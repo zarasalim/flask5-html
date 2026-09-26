@@ -1,0 +1,70 @@
+{% extends "index.html" %}
+
+{% block title %}
+Дневник программиста
+{% endblock %}
+
+{% block content %}
+
+<h2>Дневник программиста</h2>
+
+<section class="form-section">
+
+    <h3>Добавить новую запись</h3>
+
+    <form method="POST">
+
+        <label for="title">Заголовок записи:</label>
+
+        <input
+            type="text"
+            id="title"
+            name="title"
+            required
+        >
+
+        <label for="text">Текст записи:</label>
+
+        <textarea
+            id="text"
+            name="text"
+            rows="6"
+            required
+        ></textarea>
+
+        <button type="submit">
+            Добавить запись
+        </button>
+
+    </form>
+
+</section>
+
+
+<section class="notes-section">
+
+    <h3>Мои записи</h3>
+
+    {% if notes %}
+
+        {% for note in notes %}
+
+            <article class="note">
+
+                <h3>{{ note.title }}</h3>
+
+                <p>{{ note.text }}</p>
+
+            </article>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>Пока нет ни одной записи.</p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
